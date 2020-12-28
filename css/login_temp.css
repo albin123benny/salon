@@ -1,0 +1,242 @@
+body{
+    margin:0px;
+    padding:0px;
+	background-color:#F8F8F8;
+}
+.sign-in{
+    width:320px;
+    height:640px;
+    box-shadow:6px 6px 30px #d1d9e6;
+    border-radius:20px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    border:inset 2px solid #d1d9e6;
+	background-color:#F8F8F8;
+	z-index: 1;
+	box-sizing: border-box;
+	overflow: hidden;
+	
+	
+	
+}
+.bg-circule{
+	width:500px;
+	height: 500px;
+	position: absolute;
+	top: -40%;
+	left: 60%;
+	transform: translateX(-60%);
+	background-color:#ecf0f3;
+	border-radius:50%;
+}
+.main-page{
+	width: 100%;
+	height: 55%;
+	background-color: #000000;
+	border-radius: 0% 0% 50% 50% / 0% 0% 30% 30%;
+	box-shadow:2px 6px 12px #d1d9e6;
+    background-image:linear-gradient(rgba(0,0,0,0.5),#009688),url("../images/barbber.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: relative;
+
+}
+.sign-in-page,
+.sign-up-page{
+	width: 100%;
+	height: 45%;
+	
+}
+.cancel{
+	position: absolute;
+	left: 50%;
+	bottom: -25px;
+	transform: translateX(-50%);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color:#F8F8F8;
+	font-size: 1.2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow:2px 6px 20px rgba(0,0,0,0.12);
+}
+.cancel a i{
+	color: #111111;
+}
+.sign-in-page form,
+.sign-up-page form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+.sign-in-page input,
+.sign-up-page input{
+	width: 220px;
+	height: 40px;
+	margin: 5px 0px;
+	border:1px solid rgba(46,46,46,0.05);
+	outline: none;
+	color: #191919;
+	border-radius: 10px;
+	padding: 0px 10px;
+	box-sizing: border-box;
+	
+}
+.sign-in-page input::placeholder
+.sign-up-page input::placeholder{
+	letter-spacing: 2px;
+	font-family: calibri;
+	font-size: 15px;
+}
+.sign-in-page button,
+.sign-up-page button{
+	width: 220px;
+	height: 40px;
+	font-family: calibri;
+	margin: 10px 0px;
+	border:none;
+	outline: none;
+	border-radius: 20px;
+	background-color: #FFFFFF;
+	box-shadow: 12px 12px 30px rgba(0,0,0,0.1);
+}
+.sign-in-page button:hover,
+.sign-up-page button:hover{
+	background-color: #36D7A2;
+	color: #FFFFFF;
+	transition: all ease 0.3s;
+}
+.sign-in-page input:focus,
+.sign-up-page input:focus{
+	box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
+}
+.top-bar{
+	width:180px;
+	height: 20px;
+	background-color: #FFFFFF;
+	position: absolute;
+	left: 50%;
+	top: 0px;
+	transform: translateX(-50%);
+	border-radius: 0px 0px 20px 20px;
+
+}
+.sign-in-page,.cancel,.sign-up-page{
+	display: none;
+}
+.main-page{
+	height: 100%;
+	border-radius: 0px;
+}
+.name{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
+	font-family: calibri;
+}
+.name h1{
+	font-size: 5rem;
+	color:#fff;
+	margin: 0px;
+	letter-spacing: 2px;
+	font-family: 'Kaushan Script', cursive;
+	
+}
+.name p{
+	color:rgba(217,217,217,1);
+	margin: 0px;
+	font-size: 1.2rem;
+}
+.form-btns{
+	position: absolute;
+	left: 50%;
+	bottom: 40px;
+	transform: translateX(-50%);
+	text-align: center;
+}
+.s-btn,.new-btn{
+	width:230px;
+	height: 42px;
+	margin: 5px 0px;
+	border: none;
+	outline: none;
+	border-radius: 20px;
+	font-family: calibri;
+	text-transform: uppercase;
+	font-size: 0.9rem;
+	letter-spacing: 1px;
+	font-weight: 700;
+	box-shadow: 2px 2px 30px rgba(0,0,0,0.5);
+}
+
+
+
+.s-btn{
+	background-color: #FFFFFF;
+	color: #171717;
+}
+.form-btns a{
+	color: rgba(241, 127, 13, 0.8);
+	letter-spacing: 1px;
+	font-family: calibri;
+	text-decoration: none;
+	
+}
+button:active{
+	transform: scale(1.05);
+}
+.active-sign-in .form-btns,
+.active-sign-up .form-btns{
+	display: none;
+	
+}
+.active-sign-in .main-page,
+.active-sign-up .main-page{
+	height: 55%;
+	border-radius: 0% 0% 50% 50%/0% 0% 20% 20%;
+	animation:main 0.2s linear;
+ 
+}
+.active-sign-in .sign-in-page,
+.active-sign-in .cancel{
+	display: flex;
+}
+.active-sign-up .sign-up-page,
+.active-sign-up .cancel{
+	display: flex;
+}
+.active-sign-up .cancel i,
+.active-sign-in .cancel i{
+	animation: cancel 0.5s ;
+	
+}
+@keyframes main{
+	0%{
+		height:100%;
+	}
+	100%{
+		height:55%;
+	}
+}
+@keyframes cancel{
+	0%{
+		opacity: 0;
+		transform: rotate(-190deg);
+		
+	}
+	100%{
+		opacity: 1;
+		transform: rotate(0deg);
+		
+	}
+}
