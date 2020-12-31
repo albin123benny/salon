@@ -16,7 +16,16 @@ if (isset($_POST['email']) && isset($_POST['password']))
         {
                 session_start();
                 $_SESSION["id"]=$row["loginid"];
-                header("Location:index.php");
+                if($row["type"]=='admin'){
+                    header("Location:admin.php");
+                }
+                else if($row["type"]=='barber'){
+                    header("Location:barber.php");
+                }
+                else if($row["type"]=='customer'){
+                    header("Location:index.php");
+                }
+                
         } 
         else{
             header("Location:signin.php?errormessage=WRONGPASSWORD");
@@ -31,11 +40,4 @@ else
 {
     die( "something went wrong");
 }
-
-    // echo $uname,$pass;
- 
-    
-// } else {
-//     die("Ayyo post value mosham aaaanallo");
-// }
 ?>
