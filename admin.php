@@ -28,11 +28,11 @@ if(isset($_SESSION["id"])){
         }
     </style>
     <script>
-        function display() {
-            document.getElementById("myModal").style.display = "block";
+        function display(elm) {
+            document.getElementById(elm).style.display = "block";
         }
-        function cls() {
-            document.getElementById("myModal").style.display = "none";
+        function cls(elm) {
+            document.getElementById(elm).style.display = "none";
         }
         window.onclick = function(event) {
         if (event.target == modal) {
@@ -63,38 +63,41 @@ if(isset($_SESSION["id"])){
     </div>
     <div class="body">
     <div class="add"> 
-        <p > Delete Account</p>
-        <p onclick="display()" style="background-color: rgb(211, 126, 15);"> Add Admin</p>
+        <p onclick="display('del')"> Delete Account</p>
+        <p onclick="display('inpu')" style="background-color: rgb(211, 126, 15);"> Add Admin</p>
     </div>
-        <div class="admins">
-            <p><b>Id</b></p>
-            <p><b>Name</b></p>
-            <p><b>email</b></p>
-            <p><b>Phone</b></p>
-            <p><b>Status</b></p>
-        </div>
-        <?php
-            $query="SELECT * FROM tbl_login WHERE type='admin'";
-            $result=mysqli_query($con,$query);
-            while($row=mysqli_fetch_array($result))
-            {  $tempid=$row['loginid'];
-                $query="SELECT * FROM reg WHERE loginid=$tempid";
-                $result1=mysqli_query($con,$query);
-                $reg_table = mysqli_fetch_array($result1);
-                ?>
-                <div class="admins">
-                    <p><?php echo $row['loginid']?></p>
-                    <p><?php echo $reg_table['name']?></p>
-                    <p><?php echo $row['email']?></p>
-                    <p><?php echo $reg_table['mobile']?></p>
-                    <p style="background-color: rgba(42, 173, 64, 0.918); border-radius:7px;"><?php if($login['status']==1)echo "Active"; else echo "In-Active"?></p>
-                </div>
-    <?php  } ?>  
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Status</th>
+            </tr>
+        
+            <?php
+                $query="SELECT * FROM tbl_login WHERE type='admin'";
+                $result=mysqli_query($con,$query);
+                while($row=mysqli_fetch_array($result))
+                {  $tempid=$row['loginid'];
+                    $query="SELECT * FROM reg WHERE loginid=$tempid";
+                    $result1=mysqli_query($con,$query);
+                    $reg_table = mysqli_fetch_array($result1);
+                    ?>
+                    <tr>
+                        <td><?php echo $row['loginid']?></td>
+                        <td><?php echo $reg_table['name']?></td>
+                        <td><?php echo $row['email']?></td>
+                        <td><?php echo $reg_table['mobile']?></td>
+                        <td style="<?php if($row['status']==1)echo'background-color:rgba(42, 173, 64, 0.918);'; else echo'background-color:red;'?>; border-radius:13px;"><?php if($row['status']==1)echo 'Active'; else echo 'In-Active'?></td>
+                    </tr>
+            <?php  } ?>  
+        </table>
 
     </div>
-        <div id="myModal" class="modal">
+    <div id="inpu" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="cls()">&times;</span>
+            <span class="close" onclick="cls('inpu')">&times;</span>
             <center><p>Add Admin</p>
             <form id="phppage" action="php/addadmin.php" method='POST'>
                 <input Required type="text" name="uname" id="fullname" placeholder="Fullname" onblur="full_name(this.id)">
@@ -107,6 +110,18 @@ if(isset($_SESSION["id"])){
             </center>
         </div>
     </div>
+
+    <div id="del" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cls('del')">&times;</span>
+            <center><p>Delete Admin</p>
+            <p> By deleting this account, you will get revoked by all your admin privillages ! <br> Do you really wish to 
+            delete this account ? 
+            <a href="php/del_admin.php"><button>Delete this accout ! </button></a>
+            </center>
+        </div>
+    </div>
+
 </body>
 </html>
 <?php
