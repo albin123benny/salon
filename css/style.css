@@ -595,3 +595,15 @@ hr{
     text-decoration: none;
     cursor: pointer;
 }
+
+table{
+    width:80%
+}
+td,th{
+    text-align: center;
+    padding:15px;
+    border-bottom: 1px solid #ddd;
+}
+tr:hover {
+    background-color: #dbdbdb6e;
+}

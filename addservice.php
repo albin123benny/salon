@@ -81,7 +81,6 @@ if(isset($_SESSION["id"])){
                             </div>
                             </a>
                         </div>
-                    
         <?php  } ?>  
     </div>
 

@@ -11,6 +11,7 @@ if(isset($_SESSION["id"])){
         $query="SELECT * FROM reg WHERE loginid=$id";
         $result=mysqli_query($con,$query);
         $reg_table = mysqli_fetch_array($result);
+        $ser_id=$_GET['id'];
     
     ?>
 
@@ -58,7 +59,24 @@ if(isset($_SESSION["id"])){
     <div class="body">
         <div class="add"> <a href="addservice.php"><p> Go Back</p></a></div>
         <div class="service-box">
+            <table>
+                <tr>
+                    <th>Style Name</th>
+                    <th>Barber Name</th>
+                </tr>
+                <?php
+                    $query="SELECT * FROM tbl_service_styles WHERE ser_id= $ser_id";
+                    $ser_style = mysqli_query($con,$query) ;
+                    while( $rows = mysqli_fetch_array($ser_style) ){ ?>
+                    <tr>
+                        <td><?php echo $rows["style_name"] ?> </td>
+                        <td>two</td>
+                    </tr>
 
+                    <?php }
+                ?>
+                
+            </table>
         </div>
     </div>
 </body>
