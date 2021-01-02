@@ -13,8 +13,7 @@ if(isset($_SESSION["id"])){
         $reg_table = mysqli_fetch_array($result);
     
     ?>
-
-
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,18 +68,17 @@ if(isset($_SESSION["id"])){
                 $result=mysqli_query($con,$query);
                 while($row=mysqli_fetch_array($result))
                 { ?>
-                    
-                        <div class="single-service">
-                        <a href="addservicestyle.php?id=<?php echo $row['ser_id']?>" >
-                            <img src="images/<?php echo $row['ser_img']?>">
-                            <div class="overlay"></div>
-                            <div class="service-desc">
-                                <h3><?php echo $row['ser_name']?></h3>
-                                <hr>
-                                <p><?php echo $row['ser_desc']?></p>
-                            </div>
-                            </a>
+                    <div class="single-service">
+                    <a href="addservicestyle.php?id=<?php echo $row['ser_id']?>" >
+                        <img src="images/<?php echo $row['ser_img']?>">
+                        <div class="overlay"></div>
+                        <div class="service-desc">
+                            <h3><?php echo $row['ser_name']?></h3>
+                            <hr>
+                            <p><?php echo $row['ser_desc']?></p>
                         </div>
+                        </a>
+                    </div>
         <?php  } ?>  
     </div>
 

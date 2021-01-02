@@ -15,7 +15,6 @@ if(isset($_SESSION["id"])){
     
     ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,6 +57,16 @@ if(isset($_SESSION["id"])){
     </div>
     <div class="body">
         <div class="add"> <a href="addservice.php"><p> Go Back</p></a></div>
+        <div class="add">
+            <?php
+                $query="SELECT DISTINCT style_name FROM tbl_service_styles WHERE ser_id= $ser_id";
+                $ser_stylee = mysqli_query($con,$query) ;
+                while( $rowss = mysqli_fetch_array($ser_stylee) )
+                { 
+                    echo "<div class='styles'>".$rowss['style_name']."</div>";
+                }
+            ?>
+        </div>
         <div class="service-box">
             <table>
                 <tr>
@@ -72,10 +81,8 @@ if(isset($_SESSION["id"])){
                         <td><?php echo $rows["style_name"] ?> </td>
                         <td>two</td>
                     </tr>
-
                     <?php }
                 ?>
-                
             </table>
         </div>
     </div>

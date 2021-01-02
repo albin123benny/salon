@@ -27,14 +27,15 @@
 <div class="top-bar"></div>	
 <!--name------------->
 <div class="name">
-<h1>HAIR STUDIO</h1>
+<h1 style="font-size:60px;">HAIR STUDIO Barber</h1>
 <p></p>
 </div>
 <!--btns---------------------->
 <div class="form-btns">
 <button class="s-btn">Sign In</button>
 <button class="new-btn">New Account ?</button>
-<center style="margin-top:10px"><a href="signin_barber.php" >Sign or register as a Barber</a></center>
+<center style="margin-top:10px"><a href="signin.php" >Sign or register as a customer</a></center>
+
 </div>
 <!--cancel-btn------------>
 <div class="cancel">
@@ -46,10 +47,9 @@
 <form action="login.php" method='POST' id='login'>
 	<?php 
 		if(isset($_GET['errormessage'])){
-			if($_GET['errormessage'] =='WRONGPASSWORD')
-			{ ?>
-				<center><p id="err" style="color:red;font-size:12px">Invalid username or password !</p></center>
-				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+			if($_GET['errormessage'] =='WRONGPASSWORD'){ ?>
+			<center><p id="err" style="color:red;font-size:12px">Invalid username or password !</p></center>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script>
            $(function(){
               $(".s-btn").trigger("click"); //tried .click();
@@ -71,7 +71,7 @@
 </div>
 <!--sign-up-page--------------->
 <div class="sign-up-page">
-<form id='reg' method='POST' action="reg.php">
+<form id='reg' method='POST' action="reg.php?type=barber">
 	<!--email------->
 	<br>
 	<br>
@@ -85,6 +85,7 @@
 	<!--btn------->
 	<button onclick="val('reg')">Sign Up</button>
 </form>	
+
 	
 </div>
 </section>
@@ -94,22 +95,19 @@
 <!--Jquery------------>
 <script type="text/javascript" src="js/JQuery3.3.1.js"></script>
 <script type="text/javascript" >
-
-/*For Sign In*/
+	/*For Sign In*/
 $(document).on('click','.s-btn',function(){
 	$('.sign-in').addClass('active-sign-in').siblings('.sign-in').removeClass('active-sign-up')
 });		
-
-/*For Sign up*/
+	/*For Sign up*/
 $(document).on('click','.new-btn',function(){
 	$('.sign-in').addClass('active-sign-up').siblings('.sign-in').removeClass('active-sign-in')
 });	
-
-/*For Go Back To Main Page*/
-$(document).ready(function(){
-	$('.cancel a').click(function(){
-		$('.sign-in').removeClass('active-sign-in , active-sign-up')
-	})
+	/*For Go Back To Main Page*/
+  $(document).ready(function(){
+	 $('.cancel a').click(function(){
+		 $('.sign-in').removeClass('active-sign-in , active-sign-up')
+	 })
  });
 </script>
 </body>
