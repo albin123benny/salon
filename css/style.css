@@ -458,6 +458,9 @@ hr{
     font-family: fontone;
     font-weight: 900;
 }
+.navigation_top_user .active{
+    border-bottom:solid rgba(0, 0, 0, 0.952) 1px;
+}
 .navigation_top_user a:hover{
     border-bottom:solid rgba(0, 0, 0, 0.571) 1px;
 }
