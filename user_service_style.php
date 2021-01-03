@@ -33,7 +33,7 @@ if(isset($_SESSION["id"])){
             $query="SELECT * FROM tbl_service";
             $resultt=mysqli_query($con,$query);
             while($ro=mysqli_fetch_array($resultt)){ ?>
-                <a href="<?php echo $ro['ser_id']?>"><?php echo $ro['ser_name']?></a>
+                <a href="user_service_style.php?id=<?php echo $ro['ser_id']?>"><?php echo $ro['ser_name']?></a>
             <?php }
         ?>
         <a href="" style="margin-left:50px">Favorates</a>
