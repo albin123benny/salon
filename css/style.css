@@ -480,17 +480,21 @@ hr{
     margin-left: 30px;
 }
 .side_nav a {
-    padding: 8px 8px 8px 20px;
+    padding: 8px 25px 8px 20px;
     text-decoration: none;
     font-size: 17px;
     color: rgb(31, 30, 30);
-    display: block;
+    display: inline-block;
     /* background-color: green; */
     margin:10px 0px;
   }
 .side_nav a:hover{
-    color: rgb(205, 205, 205);
+    color: rgb(93, 93, 93);
 } 
+.side_nav .outline{
+    border: solid rgba(0, 0, 0, 0.678) 1px;
+    border-radius: 10px;
+}
 
 .nav_buttons{
     position: relative;

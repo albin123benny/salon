@@ -18,7 +18,7 @@ if(isset($_SESSION["id"])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Salon</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         body{
@@ -46,31 +46,48 @@ if(isset($_SESSION["id"])){
         <a href="#">Contact</a>
     </div>
     <div class="body-user">
-        <!-- <div class="service-box" style="width:90% "> -->
-            <div class="content_box">
-                <img src="one.png" alt="">
-                <div class="NM">
-                    Navy<br> <p>25 min</p> 
-                </div>
-                <div class="ratings"> 
-                    <img src="images/ratings-yellow.png" alt="">
-                    <img src="images/ratings-yellow.png" alt="">
-                    <img src="images/ratings-yellow.png" alt="">
-                    <img src="images/ratings-yellow.png" alt="">
-                    <img src="images/ratings.png" alt="">
-                </div>
-                <button> Kings &nbsp; &nbsp; $50</button>
+        <div class="content_box">
+            <img src="one.png" alt="">
+            <div class="NM">
+                Navy<br> <p>25 min</p> 
             </div>
-            <div class="content_box">
-            <div class="NM">Navy</div>
+            <div class="ratings"> 
+                <img src="images/ratings-yellow.png" alt="">
+                <img src="images/ratings-yellow.png" alt="">
+                <img src="images/ratings-yellow.png" alt="">
+                <img src="images/ratings-yellow.png" alt="">
+                <img src="images/ratings.png" alt="">
             </div>
-            <div class="content_box">
-            <div class="NM">Navy</div>
+            <button> Kings &nbsp; &nbsp; $50</button>
+        </div>
+        <div class="content_box">
+            <img src="one.png" alt="">
+            <div class="NM">
+                Navy<br> <p>25 min</p> 
             </div>
-            <div class="content_box">
-            <div class="NM">Navy </div>
+            <div class="ratings"> 
+                <img src="images/ratings-yellow.png" alt="">
+                <img src="images/ratings-yellow.png" alt="">
+                <img src="images/ratings-yellow.png" alt="">
+                <img src="images/ratings-yellow.png" alt="">
+                <img src="images/ratings.png" alt="">
             </div>
-        <!-- </div> -->
+            <button> Kings &nbsp; &nbsp; $50</button>
+        </div>
+        <div class="content_box">
+            <img src="one.png" alt="">
+            <div class="NM">
+                Navy<br> <p>25 min</p> 
+            </div>
+            <div class="ratings"> 
+                <img src="images/ratings-yellow.png" alt="">
+                <img src="images/ratings-yellow.png" alt="">
+                <img src="images/ratings-yellow.png" alt="">
+                <img src="images/ratings-yellow.png" alt="">
+                <img src="images/ratings.png" alt="">
+            </div>
+            <button> Kings &nbsp; &nbsp; $50</button>
+        </div>
     </div>
 </body>
 </html>
