@@ -48,12 +48,6 @@ if(isset($_SESSION["id"])){
         <a class="rgt" style="float:right" href="logout.php">Logout</a>
         <a class="rgt" style="float:right" href="profile.php"><?php echo $reg_table['name'] ?></a>
     </div>
-    <!-- <div class="side_nav">
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-    </div> -->
     <div class="nav_buttons">
         <a href="admin.php" class="nav_btn_active">Add admin</a>
         <a href="addservice.php" class="nav_btn">Add Service</a>

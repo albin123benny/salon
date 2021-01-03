@@ -131,6 +131,7 @@ href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min
         while($row=mysqli_fetch_array($result))
         { ?>
             <div class="single-service">
+            <a href="user_service_style.php?id=<?php echo $row['ser_id']?>" >
                 <img src="images/<?php echo $row['ser_img']?>">
                 <div class="overlay"></div>
                 <div class="service-desc">
@@ -138,8 +139,9 @@ href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min
                     <hr>
                     <p><?php echo $row['ser_desc']?></p>
                 </div>
+                </a>
             </div>
-    <?php  } ?>  
+        <?php  } ?>  
 </div> 
 
 </section>
