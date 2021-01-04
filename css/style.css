@@ -456,9 +456,11 @@ hr{
     text-decoration: none;
     font-size: 18px;
     font-family: fontone;
-    font-weight: 900;
+    font-weight: 700;
 }
 .navigation_top_user .active{
+    font-size: 20px;
+    font-weight: 900;
     border-bottom:solid rgba(0, 0, 0, 0.952) 1px;
 }
 .navigation_top_user a:hover{
@@ -487,9 +489,12 @@ hr{
     display: inline-block;
     /* background-color: green; */
     margin:10px 0px;
+    border: solid rgba(0, 0, 0, 0) 1px;
   }
 .side_nav a:hover{
     color: rgb(93, 93, 93);
+    border-radius: 10px;
+    border: solid rgba(0, 0, 0, 0.413) 1px;
 } 
 .side_nav .outline{
     border: solid rgba(0, 0, 0, 0.678) 1px;
@@ -678,6 +683,7 @@ del a{
     color:black;
 }
 .content_box{
+    cursor: pointer;
     position: relative;
     width:29%;
     height:560px;

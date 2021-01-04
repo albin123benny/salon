@@ -40,12 +40,13 @@ if(isset($_SESSION["id"])){
         <a href="">Orders</a>
     </div>
     <div class="side_nav">
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <a href="#">About</a><br>
+        <a href="#">Services</a><br>
+        <a href="#">Clients</a><br>
+        <a href="#">Contact</a><br>
     </div>
     <div class="body-user">
+    
         <div class="content_box">
             <img src="one.png" alt="">
             <div class="NM">
@@ -60,6 +61,8 @@ if(isset($_SESSION["id"])){
             </div>
             <button> Kings &nbsp; &nbsp; $50</button>
         </div>
+
+
         <div class="content_box">
             <img src="one.png" alt="">
             <div class="NM">
