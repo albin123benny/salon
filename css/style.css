@@ -769,3 +769,19 @@ del a{
     color: rgba(0, 0, 0, 0.735);
     line-height: 40px;
 }
+.delboard{
+    position: relative;
+    width:100%;
+    height:40px;
+    background-color: rgb(220, 220, 220);
+    display: block;
+    margin: 10px;
+}
+.delboard input[type=checkbox]{
+    width: 20px;
+    height: 20px;
+}
+.delboard p{
+    position: relative;
+    top:-28px;
+}

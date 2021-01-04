@@ -139,11 +139,22 @@ if(isset($_SESSION["id"])){
     <div id="del" class="modal">
         <div class="modal-content">
             <span class="close" onclick="cls('del')">&times;</span>
-            <center><p>Delete Admin</p>
-            <p> By deleting this account, you will get revoked by all your admin privillages ! <br> Do you really wish to 
-            delete this account ? 
-            <a href=""><button>Delete this accout ! </button></a>
-            </center>
+            <center><p>Delete styles</p></center>
+            <?php
+                $query="SELECT * FROM tbl_barber_info where login_id = $id ";
+                $res=mysqli_query($con,$query);
+                while($barber_info=mysqli_fetch_array($res)){
+                    $style_id=$barber_info['style_id'];
+                    $qone="select * from tbl_service_styles where style_id=$style_id and ser_id = $ser_id";
+                    $resone=mysqli_query($con,$qone);
+                    while($service_styles=mysqli_fetch_array($resone)){
+                        // echo $service_styles["style_name"];
+                        echo '<div class="delboard">';
+                        echo '<input type="checkbox"> &nbsp; <p>navy</p></div>';
+
+                    }
+                }
+                ?>
         </div>
     </div>
 </body>
