@@ -26,6 +26,19 @@ if(isset($_SESSION["id"])){
             background-color: white; 
         }
     </style>
+    <script>
+        function display(elm) {
+            document.getElementById(elm).style.display = "block";
+        }
+        function cls(elm) {
+            document.getElementById(elm).style.display = "none";
+        }
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            document.getElementById("myModal").style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="navigation_top_user">
@@ -52,7 +65,9 @@ if(isset($_SESSION["id"])){
             <p onclick="display('inpu')" style="background-color:#f6ae2d;"> Add Style</p>
         </div>
 
-        <div class="content_box">
+        
+
+        <!-- <div class="content_box">
             <img src="one.png" alt="">
             <div class="NM">
                 Navy<br> <p>25 min</p> 
@@ -65,7 +80,7 @@ if(isset($_SESSION["id"])){
                 <img src="images/ratings.png" alt="">
             </div>
             <button> Kings &nbsp; &nbsp; $50</button>
-        </div>
+        </div> -->
 
         <div class="content_box">
             <img src="one.png" alt="">
@@ -81,19 +96,35 @@ if(isset($_SESSION["id"])){
             </div>
             <button> Kings &nbsp; &nbsp; $50</button>
         </div>
-        <div class="content_box">
-            <img src="one.png" alt="">
-            <div class="NM">
-                Navy<br> <p>25 min</p> 
-            </div>
-            <div class="ratings"> 
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings.png" alt="">
-            </div>
-            <button> Kings &nbsp; &nbsp; $50</button>
+    </div>
+    <div id="inpu" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cls('inpu')">&times;</span>
+            <center>
+            <?php 
+                $query="SELECT * FROM tbl_service where ser_id=ser_id";
+                $sty=mysqli_fetch_array(mysqli_query($con,$query));
+                echo "<p> Add ".$sty['ser_name']." style</p>";
+            ?>
+            <form id="phppage" action="php/addservisestyles.php?id=<?php echo $ser_id;?>" method='POST' enctype="multipart/form-data">
+                <input Required type="text" name="style_name" id="fullname" placeholder="Style Name" >
+                <input Required type="text" name="time" id="email" placeholder="Time required (25 min)" >
+                <input Required type="text" name="price" id="email" placeholder="Price" >
+                <input type="FILE" name=1>
+                <input type="submit" value="Add Style">
+            </form>
+            </center>
+        </div>
+    </div>
+
+    <div id="del" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cls('del')">&times;</span>
+            <center><p>Delete Admin</p>
+            <p> By deleting this account, you will get revoked by all your admin privillages ! <br> Do you really wish to 
+            delete this account ? 
+            <a href=""><button>Delete this accout ! </button></a>
+            </center>
         </div>
     </div>
 </body>
