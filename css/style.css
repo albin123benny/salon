@@ -705,6 +705,7 @@ del a{
     height: 300px;
     position: relative;
     top:40px;
+    border-radius: 20px;
 }
 .content_box .NM{
     position: absolute;
@@ -752,4 +753,19 @@ del a{
     width:20px;
     height:20px;
     margin:-3px
+}
+.nocontent{
+    position: relative;
+    width:50%;
+    height:560px;
+    margin-top:50px;
+    transition: .3s ease-in-out;
+}
+.nocontent p{
+    text-align: center;
+    font-family:fonttwo;
+    font-weight: 10;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.735);
+    line-height: 40px;
 }

@@ -65,8 +65,41 @@ if(isset($_SESSION["id"])){
             <p onclick="display('inpu')" style="background-color:#f6ae2d;"> Add Style</p>
         </div>
 
+        <?php
+        $flag=true;
+        $query="SELECT * FROM tbl_barber_info where login_id = $id ";
+        $res=mysqli_query($con,$query);
+        while($barber_info=mysqli_fetch_array($res)){
+            $style_id=$barber_info['style_id'];
+            $qone="select * from tbl_service_styles where style_id=$style_id and ser_id = $ser_id";
+            $resone=mysqli_query($con,$qone);
+            while($service_styles=mysqli_fetch_array($resone)){
+                    // echo $service_styles["style_name"];
+                    $flag=false;
+                 ?>
+                     <div class="content_box">
+                         <center><img src="images/<?php echo $barber_info["images"] ?>" alt=""></center>
+                         <div class="NM">
+                             <?php echo $service_styles["style_name"] ?><br> <p><?php echo $barber_info['avg_time'] ?> &nbsp; min</p> 
+                         </div>
+                         <div class="ratings"> 
+                             <img src="images/ratings-yellow.png" alt="">
+                             <img src="images/ratings-yellow.png" alt="">
+                             <img src="images/ratings-yellow.png" alt="">
+                             <img src="images/ratings-yellow.png" alt="">
+                             <img src="images/ratings.png" alt="">
+                         </div>
+                         <button> <?php echo $reg_table['name'] ?> &nbsp; &nbsp; ₹ <?php echo $barber_info['price'] ?></button>
+                     </div>
+                <?php 
+            }
+        }
+        if($flag){
+            $flag=false;
+            echo "<div class='nocontent'><p>Sorry no styles found! Please add styles by clicking 'Add style' button above 👆 </p></div>" ;
+        }
+        ?>
         
-
         <!-- <div class="content_box">
             <img src="one.png" alt="">
             <div class="NM">
@@ -82,27 +115,13 @@ if(isset($_SESSION["id"])){
             <button> Kings &nbsp; &nbsp; $50</button>
         </div> -->
 
-        <div class="content_box">
-            <img src="one.png" alt="">
-            <div class="NM">
-                Navy<br> <p>25 min</p> 
-            </div>
-            <div class="ratings"> 
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings.png" alt="">
-            </div>
-            <button> Kings &nbsp; &nbsp; $50</button>
-        </div>
     </div>
     <div id="inpu" class="modal">
         <div class="modal-content">
             <span class="close" onclick="cls('inpu')">&times;</span>
             <center>
             <?php 
-                $query="SELECT * FROM tbl_service where ser_id=ser_id";
+                $query="SELECT * FROM tbl_service where ser_id=$ser_id";
                 $sty=mysqli_fetch_array(mysqli_query($con,$query));
                 echo "<p> Add ".$sty['ser_name']." style</p>";
             ?>
