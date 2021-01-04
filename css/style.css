@@ -589,17 +589,18 @@ hr{
 }
 .add p{
     position: relative;
-    color:white;
+    color:rgba(255, 255, 255, 0.893);
     padding: 10px;
     float:right;
-    background-color: rgb(156, 27, 27);
+    background-color:rgb(51, 101, 138);
     border-radius: 5px;
     cursor: pointer;
     margin-right: 10px;
+    transition:box-shadow .4s ease-in-out;
 }
 .add p:hover{
+    color:white;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.349);
-    color: rgba(199, 194, 194, 0.931);
 }
 .add .styles{
     position: relative;

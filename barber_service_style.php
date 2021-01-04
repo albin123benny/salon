@@ -44,12 +44,14 @@ if(isset($_SESSION["id"])){
                 <a href="barber_service_style.php?id=<?php echo $ro['ser_id'];?>" <?php if($_GET['id']==$ro['ser_id'])echo'class=outline'?> ><?php echo $ro['ser_name']?></a><br>
             <?php }
         ?>
-        <!-- <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a> -->
     </div>
     <div class="body-user">
+
+        <div class="add"> 
+            <p onclick="display('del')"> Delete Style</p>
+            <p onclick="display('inpu')" style="background-color:#f6ae2d;"> Add Style</p>
+        </div>
+
         <div class="content_box">
             <img src="one.png" alt="">
             <div class="NM">
@@ -64,6 +66,7 @@ if(isset($_SESSION["id"])){
             </div>
             <button> Kings &nbsp; &nbsp; $50</button>
         </div>
+
         <div class="content_box">
             <img src="one.png" alt="">
             <div class="NM">
