@@ -35,6 +35,7 @@ if(isset($_SESSION["id"])){
         <a href="#">Feedbacks</a>
         <a href="#">Contact Admin</a>
         <a href="">Profile</a>
+        <a href="logout.php">Logout</a>
     </div>
     <div class="side_nav">
         <?php

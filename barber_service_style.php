@@ -48,6 +48,7 @@ if(isset($_SESSION["id"])){
         <a href="#">Feedbacks</a>
         <a href="#">Contact Admin</a>
         <a href="">Profile</a>
+        <a href="logout.php">Logout</a>
     </div>
     <div class="side_nav">
         <?php
@@ -67,7 +68,7 @@ if(isset($_SESSION["id"])){
 
         <?php
         $flag=true;
-        $query="SELECT * FROM tbl_barber_info where login_id = $id ";
+        $query="SELECT * FROM tbl_barber_info where login_id = $id and status=1";
         $res=mysqli_query($con,$query);
         while($barber_info=mysqli_fetch_array($res)){
             $style_id=$barber_info['style_id'];
@@ -140,21 +141,22 @@ if(isset($_SESSION["id"])){
         <div class="modal-content">
             <span class="close" onclick="cls('del')">&times;</span>
             <center><p>Delete styles</p></center>
-            <?php
-                $query="SELECT * FROM tbl_barber_info where login_id = $id ";
-                $res=mysqli_query($con,$query);
-                while($barber_info=mysqli_fetch_array($res)){
-                    $style_id=$barber_info['style_id'];
-                    $qone="select * from tbl_service_styles where style_id=$style_id and ser_id = $ser_id";
-                    $resone=mysqli_query($con,$qone);
-                    while($service_styles=mysqli_fetch_array($resone)){
-                        // echo $service_styles["style_name"];
-                        echo '<div class="delboard">';
-                        echo '<input type="checkbox"> &nbsp; <p>navy</p></div>';
-
+                <?php
+                    echo "<form action='php/del_styles.php?id=$ser_id' method='POST'>";
+                    $query="SELECT * FROM tbl_barber_info where login_id = $id and status=1";
+                    $res=mysqli_query($con,$query);
+                    while($barber_info=mysqli_fetch_array($res)){
+                        $style_id=$barber_info['style_id'];
+                        $qone="select * from tbl_service_styles where style_id=$style_id and ser_id = $ser_id";
+                        $resone=mysqli_query($con,$qone);
+                        while($service_styles=mysqli_fetch_array($resone)){
+                            echo '<div class="delboard">';
+                            echo '<input type="checkbox" name="del[]" value='.$service_styles['style_id'].'> &nbsp; '.$service_styles['style_name'].'</div>';
+                        }
                     }
-                }
-                ?>
+                    ?>
+                <center><input type="Submit" value="Delete styles"></center>
+            </form>
         </div>
     </div>
 </body>
