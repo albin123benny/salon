@@ -683,8 +683,8 @@ del a{
     text-decoration: none;
     color:black;
 }
+
 .content_box{
-    cursor: pointer;
     position: relative;
     width:29%;
     height:560px;
@@ -695,10 +695,12 @@ del a{
     flex-wrap: wrap;
     justify-content: center;
     transition: .3s ease-in-out;
+    cursor: hand;
 }
 .content_box:hover{
     width:29.1%;
     height:565px;
+    
 }
 .content_box img{
     width: 80%;
@@ -740,6 +742,10 @@ del a{
 }
 .content_box button:hover{
     background-color: rgba(0, 0, 0, 0.822);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.201);
+}
+.content_box button:focus{
+    outline: none;
 }
 .ratings{
     position: absolute;;
@@ -793,4 +799,27 @@ del a{
     color: white;
     border: none;
     border-radius: 100px;
+
+}
+.booking_info{
+    position: relative;
+    margin-top:2%;
+    float:right;
+    width:60%;
+    height:600px;
+    background-color: tomato;
+}
+.img_bdy{
+    width:500px;
+    height:500px;
+    position: relative;
+    top:100px;
+    left:-380px;
+    /* background-color: teal; */
+    overflow: hidden;
+}
+.img_bdy img{
+    position: relative;
+    width:100%;
+    height: auto;
 }
