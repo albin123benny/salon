@@ -67,16 +67,18 @@ if(isset($_SESSION["id"])){
         </div>
 
         <?php
-        $flag=true;
+        $flag=true;  //  to know wether any styles available
         $query="SELECT * FROM tbl_barber_info where login_id = $id and status=1";
         $res=mysqli_query($con,$query);
         while($barber_info=mysqli_fetch_array($res)){
             $style_id=$barber_info['style_id'];
+            $lid=$barber_info['login_id'];
+            $qtwo="select name from reg where loginid=$lid";
+            $barname=mysqli_fetch_array(mysqli_query($con,$qtwo));
             $qone="select * from tbl_service_styles where style_id=$style_id and ser_id = $ser_id";
             $resone=mysqli_query($con,$qone);
             while($service_styles=mysqli_fetch_array($resone)){
-                    // echo $service_styles["style_name"];
-                    $flag=false;
+                $flag=false;
                  ?>
                      <div class="content_box">
                          <center><img src="images/<?php echo $barber_info["images"] ?>" alt=""></center>
@@ -90,7 +92,7 @@ if(isset($_SESSION["id"])){
                              <img src="images/ratings-yellow.png" alt="">
                              <img src="images/ratings.png" alt="">
                          </div>
-                         <button> <?php echo $reg_table['name'] ?> &nbsp; &nbsp; ₹ <?php echo $barber_info['price'] ?></button>
+                         <button> <?php echo $barname['name'] ?> &nbsp; &nbsp; ₹ <?php echo $barber_info['price'] ?></button>
                      </div>
                 <?php 
             }

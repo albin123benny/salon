@@ -47,23 +47,44 @@ if(isset($_SESSION["id"])){
     </div>
     <div class="body-user">
     
-        <div class="content_box">
-            <img src="one.png" alt="">
-            <div class="NM">
-                Navy<br> <p>25 min</p> 
-            </div>
-            <div class="ratings"> 
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings.png" alt="">
-            </div>
-            <button> Kings &nbsp; &nbsp; $50</button>
-        </div>
+    <?php
+        $flag=true;  //  to know wether any styles available
+        $query="SELECT * FROM tbl_barber_info where status=1";
+        $res=mysqli_query($con,$query);
+        while($barber_info=mysqli_fetch_array($res)){
+            $style_id=$barber_info['style_id'];
+            $lid=$barber_info['login_id'];
+            $qtwo="select * from reg where loginid=$lid";
+            $barname=mysqli_fetch_array(mysqli_query($con,$qtwo));
+            $qone="select * from tbl_service_styles where style_id=$style_id and ser_id = $ser_id";
+            $resone=mysqli_query($con,$qone);
+            while($service_styles=mysqli_fetch_array($resone)){
+                $flag=false;
+                 ?>
+                     <div class="content_box">
+                         <center><img src="images/<?php echo $barber_info["images"] ?>" alt=""></center>
+                         <div class="NM">
+                             <?php echo $service_styles["style_name"] ?><br> <p><?php echo $barber_info['avg_time'] ?> &nbsp; min</p> 
+                         </div>
+                         <div class="ratings"> 
+                             <img src="images/ratings-yellow.png" alt="">
+                             <img src="images/ratings-yellow.png" alt="">
+                             <img src="images/ratings-yellow.png" alt="">
+                             <img src="images/ratings-yellow.png" alt="">
+                             <img src="images/ratings.png" alt="">
+                         </div>
+                         <button> <?php echo $barname['name'] ?> &nbsp; &nbsp; ₹ <?php echo $barber_info['price'] ?></button>
+                     </div>
+                <?php 
+            }
+        }
+        if($flag){
+            $flag=false;
+            echo "<div class='nocontent'><p>Sorry no styles found! Please try again later </p></div>" ;
+        }
+        ?>
 
-
-        <div class="content_box">
+        <!-- <div class="content_box">
             <img src="one.png" alt="">
             <div class="NM">
                 Navy<br> <p>25 min</p> 
@@ -76,21 +97,7 @@ if(isset($_SESSION["id"])){
                 <img src="images/ratings.png" alt="">
             </div>
             <button> Kings &nbsp; &nbsp; $50</button>
-        </div>
-        <div class="content_box">
-            <img src="one.png" alt="">
-            <div class="NM">
-                Navy<br> <p>25 min</p> 
-            </div>
-            <div class="ratings"> 
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings-yellow.png" alt="">
-                <img src="images/ratings.png" alt="">
-            </div>
-            <button> Kings &nbsp; &nbsp; $50</button>
-        </div>
+        </div> -->
     </div>
 </body>
 </html>
