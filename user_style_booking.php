@@ -41,8 +41,40 @@ if(isset($_SESSION["id"])){
         <a href="">Orders</a>
     </div>
     <div class="booking_info">
+        
+        <div class="book_box">
+            <div class="book_head">
+                <h1>Navy</h1>
+                <button>Book for $50</button>
+            </div>
+            <div class="bookdays">
+                <br>
+                <center><p>Set your time and day :</p>
+                <br>
+                <div>
+                    <button>S</button>
+                    <button>M</button>
+                    <button>T</button>
+                    <button>W</button>
+                    <button>T</button>
+                    <button>S</button>
+            </div>
+                </center>
+            </div>
+            <div class="bookingtime">
+                <button>10:30 - 11:00</button>
+                <button>10:30 - 11:00</button>
+                <button>10:30 - 11:00</button>
+                <button>10:30 - 11:00</button>
+                <button>10:30 - 11:00</button>
+                <button>10:30 - 11:00</button>
+                <button>10:30 - 11:00</button>
+                <button>10:30 - 11:00</button>
+                <button>10:30 - 11:00</button>
+                <button>10:30 - 11:00</button>
+            </div>
+        </div>
         <div class="img_bdy"><img src="images/pic-1.jpg" alt=""></div>
-
     </div>
 </body>
 </html>

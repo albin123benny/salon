@@ -61,7 +61,7 @@ if(isset($_SESSION["id"])){
             while($service_styles=mysqli_fetch_array($resone)){
                 $flag=false;
                  ?>
-                     <div class="content_box" onclick="location='user_style_booking.php?id=<?php echo $style_id ?>&barber=<?php echo $lid?>'">
+                     <div class="content_box" onclick="location='user_style_booking.php?styleid=<?php echo $style_id.'&barber='.$lid.'&id='.$ser_id ?>'">
                         <center><img src="images/<?php echo $barber_info["images"] ?>" alt=""></center>
                         <div class="NM">
                             <?php echo $service_styles["style_name"] ?><br> <p><?php echo $barber_info['avg_time'] ?> &nbsp; min</p> 
