@@ -42,8 +42,10 @@ if(isset($_SESSION["id"])){
         <a href="">Orders</a>
     </div>
     <div class="booking_info">
+    
         <div class="rightbox"><br>
-            <center><p>Current Schedules</p></center>
+            <center><p>Current Schedules</p>
+            <!-- <div class="rightbox_cont" onclick="change()"></div>
             <div class="rightbox_cont" onclick="change()"></div>
             <div class="rightbox_cont" onclick="change()"></div>
             <div class="rightbox_cont" onclick="change()"></div>
@@ -53,14 +55,15 @@ if(isset($_SESSION["id"])){
             <div class="rightbox_cont" onclick="change()"></div>
             <div class="rightbox_cont" onclick="change()"></div>
             <div class="rightbox_cont" onclick="change()"></div>
-            <div class="rightbox_cont" onclick="change()"></div>
-            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" onclick="change()"></div> -->
+            <div class='nocontent'><p>No schedules...</p></div>
+            </center>
 
         </div>
         <div class="book_box">
+        <button class="book_btn">Book for $50</button>
             <div class="book_head">
                 <h1>Navy</h1>
-                <button>Book for $50</button>
             </div>
             <div class="bookdays">
                 <br>
@@ -77,6 +80,26 @@ if(isset($_SESSION["id"])){
                     </div>
                     <div class="bookdays_time" style="display:none">
                         <center>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
                             <button>10:30</button>
                             <button>10:30</button>
                             <button>10:30</button>

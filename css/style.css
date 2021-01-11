@@ -840,8 +840,10 @@ del a{
     font-size: 55px;
     /* float: left; */
 }
-.book_head button{
-    position: relative;
+.book_btn{
+    position: absolute;
+    bottom: 10px;
+    left:-100px;
     cursor: pointer;
     padding:10px 30px;
     margin-top:40px;
@@ -852,8 +854,9 @@ del a{
     color: white;
     border: none;
     border-radius: 100px;
+    width: 100%;
 }
-.book_head button:hover{
+.book_btn:hover{
     background-color: rgba(0, 0, 0, 0.822);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.201);
 }
@@ -877,9 +880,8 @@ del a{
     font-size: 18px;
     border: none;
     cursor: pointer;
-    padding:10px;
+    padding:5px;
     border:rgba(165, 42, 42, 0) 1px solid;
-    
 }
 .book_content button:focus{
     outline: none;
@@ -911,5 +913,6 @@ del a{
       0 12px 1px -4px rgba(0, 0, 0, 0.055),
       0 24px 0 -10px #eee,
       0 24px 1px -9px rgba(0, 0, 0, 0.02);
-
 }
+
+
