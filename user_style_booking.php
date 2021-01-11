@@ -45,7 +45,6 @@ if(isset($_SESSION["id"])){
     
         <div class="rightbox"><br>
             <center><p>Current Schedules</p>
-            <!-- <div class="rightbox_cont" onclick="change()"></div>
             <div class="rightbox_cont" onclick="change()"></div>
             <div class="rightbox_cont" onclick="change()"></div>
             <div class="rightbox_cont" onclick="change()"></div>
@@ -55,8 +54,9 @@ if(isset($_SESSION["id"])){
             <div class="rightbox_cont" onclick="change()"></div>
             <div class="rightbox_cont" onclick="change()"></div>
             <div class="rightbox_cont" onclick="change()"></div>
-            <div class="rightbox_cont" onclick="change()"></div> -->
-            <div class='nocontent'><p>No schedules...</p></div>
+            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" onclick="change()"></div>
+            <!-- <div class='nocontent'><p>No schedules...</p></div> -->
             </center>
 
         </div>
