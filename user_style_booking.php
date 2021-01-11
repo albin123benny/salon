@@ -26,6 +26,7 @@ if(isset($_SESSION["id"])){
             background-color:white;
         }
     </style>
+    <script src="js/animation.js"></script>
 </head>
 <body>
     <div class="navigation_top_user">
@@ -41,7 +42,21 @@ if(isset($_SESSION["id"])){
         <a href="">Orders</a>
     </div>
     <div class="booking_info">
-        
+        <div class="rightbox"><br>
+            <center><p>Current Schedules</p></center>
+            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" onclick="change()"></div>
+
+        </div>
         <div class="book_box">
             <div class="book_head">
                 <h1>Navy</h1>
@@ -49,29 +64,32 @@ if(isset($_SESSION["id"])){
             </div>
             <div class="bookdays">
                 <br>
-                <center><p>Set your time and day :</p>
+                <center><p>Set your time and day :</p></center>
                 <br>
-                <div>
-                    <button>S</button>
-                    <button>M</button>
-                    <button>T</button>
-                    <button>W</button>
-                    <button>T</button>
-                    <button>S</button>
-            </div>
-                </center>
-            </div>
-            <div class="bookingtime">
-                <button>10:30 - 11:00</button>
-                <button>10:30 - 11:00</button>
-                <button>10:30 - 11:00</button>
-                <button>10:30 - 11:00</button>
-                <button>10:30 - 11:00</button>
-                <button>10:30 - 11:00</button>
-                <button>10:30 - 11:00</button>
-                <button>10:30 - 11:00</button>
-                <button>10:30 - 11:00</button>
-                <button>10:30 - 11:00</button>
+                <div class="book_content">
+                    <div class="weekdays">
+                        <center><button onclick="anim()">S</button>
+                        <button onclick="anim()">M</button>
+                        <button onclick="anim()">T</button>
+                        <button onclick="anim()">W</button>
+                        <button onclick="anim()">T</button>
+                        <button onclick="anim()">S</button></center>
+                    </div>
+                    <div class="bookdays_time" style="display:none">
+                        <center>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                            <button>10:30</button>
+                        </center>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="img_bdy"><img src="images/pic-1.jpg" alt=""></div>

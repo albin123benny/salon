@@ -5,7 +5,7 @@ if (isset($_POST['email']) && isset($_POST['password']))
     $pass=$_POST['password'];
 
     $con=mysqli_connect("localhost","root","","salon")or die("couldn't connect");
-    $query="select * from tbl_login where email='$email'";
+    $query="select * from tbl_login where email='$email' and status=1";
     $result=mysqli_query($con,$query);
 
     if(mysqli_num_rows($result)==1)

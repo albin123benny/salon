@@ -826,12 +826,14 @@ del a{
     height:100%;
     position: relative;
     margin-left:200px;
+    width:45%;
 }
 
 .book_head{
    /* background-color: cornflowerblue; */
    position: relative;
    margin-top: 30px;
+   /* float: left; */
 }
 .book_head h1{
     font-family: fonttwo;
@@ -860,40 +862,54 @@ del a{
     /* background-color: brown; */
     margin-top:20px;
     float: left;
-    width:70%;
+    /* width:70%; */
 }
-.bookdays div{
+.bookdays .book_content{
+    /* width:390px;  */
+    width:240px;
     background-color: white;
-    width: 280px;
-    padding: 10px;
-    border-radius: 28px;
+    padding:10px 20px;
+    border-radius: 30px;
+    transition:1s ease-in-out;
 }
-.bookdays button{
-    padding:3px 7px;
-    margin:5px;
+.book_content button{
+    background-color: white;
+    font-size: 18px;
+    border: none;
     cursor: pointer;
-    font-size: 15px;
-    border:none;
-    background-color: white;
+    padding:10px;
+    border:rgba(165, 42, 42, 0) 1px solid;
+    
 }
-.bookdays button:focus{
+.book_content button:focus{
     outline: none;
 }
-.bookingtime{
-    /* background-color: coral; */
-    width:70%;
-    padding:10px 0px;
-    margin-top: 17px;
+.bookdays_time button{
+    margin:6px;
+    border-radius: 20px;
 }
-.bookingtime button{
-    padding:5px 10px;
-    margin: 5px 2px;
-    cursor: pointer;
-    font-size: 14px;
-    border:rgba(255, 99, 71, 0) solid 1px;
-    border-radius: 6px;
-    background-color:rgba(255, 255, 255, 0);
+.bookdays_time button:hover{
+    border:1px solid brown;
 }
-.bookingtime button:hover{
-    border:tomato solid 1px;
+.rightbox{
+    /* background-color: cornflowerblue; */
+    width: 34%;
+    height:100%;
+    position: absolute;
+    right:0px;
+    overflow:scroll;
+}
+.rightbox_cont{
+    position: absolute;
+    width:90%;
+    height: 70px;
+    margin:10px;
+    background: #fff;
+    box-shadow:
+      0 1px 1px rgba(0, 0, 0, 0.096),
+      0 12px 0 -5px #eee,
+      0 12px 1px -4px rgba(0, 0, 0, 0.055),
+      0 24px 0 -10px #eee,
+      0 24px 1px -9px rgba(0, 0, 0, 0.02);
+
 }
