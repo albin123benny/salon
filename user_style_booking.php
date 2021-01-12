@@ -10,8 +10,9 @@ if(isset($_SESSION["id"])){
     $query="SELECT * FROM reg WHERE loginid=$id";
     $result=mysqli_query($con,$query);
     $reg_table = mysqli_fetch_array($result);
-    $ser_id=$_GET['id'];
+    $ser_id=$_GET['ser_id'];
     $barber=$_GET['barber'];
+    $style_id=$_GET['styleid'];
     ?>
 
 <!DOCTYPE html>
@@ -35,12 +36,41 @@ if(isset($_SESSION["id"])){
             $query="SELECT * FROM tbl_service";
             $resultt=mysqli_query($con,$query);
             while($ro=mysqli_fetch_array($resultt)){ ?>
-                <a href="user_service_style.php?id=<?php echo $ro['ser_id'];?>" <?php if($_GET['id']==$ro['ser_id'])echo 'class=active' ?>  ><?php echo $ro['ser_name']?></a>
+                <a href="user_service_style.php?id=<?php echo $ro['ser_id'];?>" <?php if($_GET['ser_id']==$ro['ser_id'])echo 'class=active' ?>  ><?php echo $ro['ser_name']?></a>
             <?php }
         ?>
         <a href="" style="margin-left:50px">Favorates</a>
         <a href="">Orders</a>
     </div>
+
+    <?php 
+        $query="select * from tbl_barber_info where login_id=$barber and style_id=$style_id";
+        $res=mysqli_fetch_array(mysqli_query($con,$query));
+
+        $query="select * from tbl_service_styles where style_id=$style_id";
+        $res_style=mysqli_fetch_array(mysqli_query($con,$query));
+
+        $day=date("l");
+        $weekdays=[
+            'Sunday' => 'Sun',
+            'Monday' => 'M',
+            'Tuesday' => 'Tue',
+            'Wednesday' => 'W',
+            'Thursday' => 'Thu',
+            'Friday' => 'F',
+            'Saturday' => 'Sat',
+        ];
+        $dis_day=array('Sun','M','Tue','W','Thu','F','Sat');
+        $day_short=['Sun'=>'S','M'=>'M','Tue'=>'T','W'=>'W','Thu'=>'T','F'=>'F','Sat'=>'S'];
+        $key = array_search($weekdays[$day], $dis_day);
+
+        $queryone="SELECT * FROM tbl_barber_info where login_id=$barber and style_id=$style_id and status=1";
+        $barber_info=mysqli_fetch_array(mysqli_query($con,$queryone));
+
+        $qtwo="select * from reg where loginid=$barber";
+        $barname=mysqli_fetch_array(mysqli_query($con,$qtwo));
+    ?>
+
     <div class="booking_info">
     
         <div class="rightbox"><br>
@@ -61,9 +91,10 @@ if(isset($_SESSION["id"])){
 
         </div>
         <div class="book_box">
-        <button class="book_btn">Book for $50</button>
+        <button class="book_btn" onclick="location='php/booking.php'">Book for &nbsp;₹ <?php echo $barber_info['price'] ?></button>
             <div class="book_head">
-                <h1>Navy</h1>
+                <h1><?php echo $res_style['style_name'] ?></h1>
+                <h2>by <?php echo $barname['name'] ?></h2>
             </div>
             <div class="bookdays">
                 <br>
@@ -71,12 +102,18 @@ if(isset($_SESSION["id"])){
                 <br>
                 <div class="book_content">
                     <div class="weekdays">
-                        <center><button onclick="anim()">S</button>
-                        <button onclick="anim()">M</button>
-                        <button onclick="anim()">T</button>
-                        <button onclick="anim()">W</button>
-                        <button onclick="anim()">T</button>
-                        <button onclick="anim()">S</button></center>
+                        <center>
+                            <?php
+                                for($i = $key; $i < 7; $i ++ ){
+                                    echo '<button onclick="anim()">'.$day_short[$dis_day[$i]].'</button>';
+                                }
+                                if($key>0){
+                                    for($j = 0; $j < $key ; $j ++ ){
+                                        echo '<button onclick="anim()">'.$day_short[$dis_day[$j]].'</button>';
+                                    }
+                                }
+                            ?>
+                        </center>
                     </div>
                     <div class="bookdays_time" style="display:none">
                         <center>
@@ -115,7 +152,7 @@ if(isset($_SESSION["id"])){
                 </div>
             </div>
         </div>
-        <div class="img_bdy"><img src="images/pic-1.jpg" alt=""></div>
+        <div class="img_bdy"><img src="images/<?php echo $res['images']?>" alt="image canot load"></div>
     </div>
 </body>
 </html>

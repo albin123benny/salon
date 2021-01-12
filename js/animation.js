@@ -2,7 +2,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function anim(){
-    document.getElementsByClassName("book_content")[0].style.cssText="width:390px;";
+    document.getElementsByClassName("book_content")[0].style.cssText="width:300px;";
     await sleep(1000);
     change();
     document.getElementsByClassName("weekdays")[0].style.cssText="display:none";

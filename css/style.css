@@ -806,7 +806,8 @@ del a{
     float:right;
     width:60%;
     height:600px;
-    background-color: rgb(227, 227, 227);
+    /* background-color: rgb(227, 227, 227); */
+    background-image: linear-gradient(rgb(227, 227, 227), white);
 }
 .img_bdy{
     width:500px;
@@ -840,6 +841,12 @@ del a{
     font-size: 55px;
     /* float: left; */
 }
+.book_head h2{
+    font-family: fontone;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
 .book_btn{
     position: absolute;
     bottom: 10px;
@@ -860,6 +867,9 @@ del a{
     background-color: rgba(0, 0, 0, 0.822);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.201);
 }
+.book_btn:focus{
+    outline: none;
+}
 .book_box .bookdays{
     position: relative;
     /* background-color: brown; */
@@ -868,7 +878,7 @@ del a{
     /* width:70%; */
 }
 .bookdays .book_content{
-    /* width:390px;  */
+    /* width:300px;  */
     width:240px;
     background-color: white;
     padding:10px 20px;
@@ -882,13 +892,24 @@ del a{
     cursor: pointer;
     padding:5px;
     border:rgba(165, 42, 42, 0) 1px solid;
+    border-radius: 20px;
+}
+.book_content button:focus{
+    border:1px solid brown;
+}
+.weekdays button{
+    padding:5px;
+    margin:4px;
+}
+.weekdays button:hover{
+    border:1px solid brown;
 }
 .book_content button:focus{
     outline: none;
 }
 .bookdays_time button{
     margin:6px;
-    border-radius: 20px;
+    
 }
 .bookdays_time button:hover{
     border:1px solid brown;
