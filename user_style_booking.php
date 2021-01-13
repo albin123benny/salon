@@ -13,6 +13,10 @@ if(isset($_SESSION["id"])){
     $ser_id=$_GET['ser_id'];
     $barber=$_GET['barber'];
     $style_id=$_GET['styleid'];
+
+    $querytwo="select * from tbl_barber_info where login_id=$barber and style_id=$style_id and status=1";
+    $result_barber_info=mysqli_fetch_array(mysqli_query($con,$querytwo));
+    $info_id=$result_barber_info['info_id'];
     ?>
 
 <!DOCTYPE html>
@@ -59,6 +63,13 @@ if(isset($_SESSION["id"])){
             'Thursday' => 'Thu',
             'Friday' => 'F',
             'Saturday' => 'Sat',
+            'Sun'=>'Sunday',
+            'M'=>'Monday',
+            'Tue'=>'Tuesday',
+            'W'=>'Wednesday',
+            'Thu'=>'Thursday',
+            'F'=>'Friday',
+            'Sat'=>'Saturday',
         ];
         $dis_day=array('Sun','M','Tue','W','Thu','F','Sat');
         $day_short=['Sun'=>'S','M'=>'M','Tue'=>'T','W'=>'W','Thu'=>'T','F'=>'F','Sat'=>'S'];
@@ -91,7 +102,11 @@ if(isset($_SESSION["id"])){
 
         </div>
         <div class="book_box">
-        <button class="book_btn" onclick="location='php/booking.php'">Book for &nbsp;₹ <?php echo $barber_info['price'] ?></button>
+            <button class="book_btn" onclick="sub()">
+                Book for &nbsp; ₹ 
+                <?php echo $barber_info['price'] ?>
+            </button>
+
             <div class="book_head">
                 <h1><?php echo $res_style['style_name'] ?></h1>
                 <h2>by <?php echo $barname['name'] ?></h2>
@@ -105,11 +120,11 @@ if(isset($_SESSION["id"])){
                         <center>
                             <?php
                                 for($i = $key; $i < 7; $i ++ ){
-                                    echo '<button onclick="anim()">'.$day_short[$dis_day[$i]].'</button>';
+                                    echo '<button value="'.$weekdays[$dis_day[$i]].'" onclick="anim(this.value)">'.$day_short[$dis_day[$i]].'</button>';
                                 }
                                 if($key>0){
                                     for($j = 0; $j < $key ; $j ++ ){
-                                        echo '<button onclick="anim()">'.$day_short[$dis_day[$j]].'</button>';
+                                        echo '<button value="'.$weekdays[$dis_day[$j]].'" onclick="anim(this.value)">'.$day_short[$dis_day[$j]].'</button>';
                                     }
                                 }
                             ?>
@@ -117,36 +132,23 @@ if(isset($_SESSION["id"])){
                     </div>
                     <div class="bookdays_time" style="display:none">
                         <center>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
-                            <button>10:30</button>
+                        <?php 
+                            $avg_time=$result_barber_info['avg_time'];
+                            $i=9;$j=0;
+                            while($i<20){
+                                if($i / 10 < 1 && $j / 10 < 1 ) echo '<button onclick="tim(this.value)"  value='.$i.':'.$j.'>0'.$i.':0'.$j.'</button>';
+                                elseif($i / 10 < 1 && $j / 10 > 0 ) echo '<button onclick="tim(this.value)" value='.$i.':'.$j.'>0'.$i.':'.$j.'</button>';
+                                elseif($j / 10 < 1 ) echo '<button onclick="tim(this.value)" value='.$i.':'.$j.'>'.$i.':0'.$j.'</button>';
+                                else echo '<button onclick="tim(this.value)" value='.$i.':'.$j.'>'.$i.':'.$j.'</button>';
+                                
+                                if( $j + $avg_time < 60) $j+=$avg_time;
+                                else{
+                                    $i+=1;
+                                    $temp=60-$j; $j=0;
+                                    $j+=$avg_time-$temp;
+                                }
+                            }
+                        ?>
                         </center>
                     </div>
                 </div>
@@ -154,6 +156,10 @@ if(isset($_SESSION["id"])){
         </div>
         <div class="img_bdy"><img src="images/<?php echo $res['images']?>" alt="image canot load"></div>
     </div>
+    <form action="php/booking.php?info_id=<?php echo $info_id ?>" method="POST" style="display:none" id="sub_values">
+    <input id="dayy" name="day" type="text">
+    <input id="tim" name="time" type="text">
+    </form>
 </body>
 </html>
 <?php
@@ -164,5 +170,4 @@ else{
     <h2>click <a href="signin.php">here</a> to login</h2></center>
     <?php
 }
-?>  
-<!-- test file done -->
+?> 

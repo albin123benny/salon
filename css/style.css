@@ -826,7 +826,7 @@ del a{
 .book_box{
     height:100%;
     position: relative;
-    margin-left:200px;
+    margin-left:180px;
     width:45%;
 }
 
@@ -862,6 +862,7 @@ del a{
     border: none;
     border-radius: 100px;
     width: 100%;
+    opacity: .6;
 }
 .book_btn:hover{
     background-color: rgba(0, 0, 0, 0.822);
@@ -884,6 +885,7 @@ del a{
     padding:10px 20px;
     border-radius: 30px;
     transition:1s ease-in-out;
+    
 }
 .book_content button{
     background-color: white;

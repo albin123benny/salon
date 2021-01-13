@@ -1,12 +1,29 @@
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function anim(){
+async function anim(value){
+    document.getElementById("dayy").value=value;
     document.getElementsByClassName("book_content")[0].style.cssText="width:300px;";
     await sleep(1000);
     change();
     document.getElementsByClassName("weekdays")[0].style.cssText="display:none";
     document.getElementsByClassName("bookdays_time")[0].style.cssText="display:block";
+}
+
+function tim(data)
+{
+    document.getElementById("tim").value=data;
+    document.getElementsByClassName("book_btn")[0].style.cssText="opacity:1";
+}
+
+function sub(){
+    if(document.getElementById("dayy").value != "" && document.getElementById("tim").value !="" )
+    {
+        document.getElementById("sub_values").submit();
+    }
+    else{
+        document.getElementsByClassName("book_content")[0].style.cssText="border: 1px solid red;width:300px;";
+    }
 }
 
 async function change(){
