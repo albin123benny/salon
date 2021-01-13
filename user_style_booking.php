@@ -109,7 +109,7 @@ if(isset($_SESSION["id"])){
 
             <div class="book_head">
                 <h1><?php echo $res_style['style_name'] ?></h1>
-                <h2>by <?php echo $barname['name'] ?></h2>
+                <h2>by <?php echo $barname['name'] ?> &nbsp; Average time <?php echo $result_barber_info['avg_time'] ?>&nbsp;min </h2>
             </div>
             <div class="bookdays">
                 <br>
@@ -132,30 +132,77 @@ if(isset($_SESSION["id"])){
                     </div>
                     <div class="bookdays_time" style="display:none">
                         <center>
+<!-- -------------------------------------------------------------DANGER ZONE ( dont ever  play here unless time schedule broke !! ) ------------------------------------------------------- -->
+                        <?php
 
+                            $taken_hr=array();
+                            $taken_min=array();
+                            $taken_avg_time=array();
 
-                        <?php 
+                            $querythree="SELECT * FROM tbl_booking";
+                            $resume=mysqli_query($con,$querythree);
+                            while($row=mysqli_fetch_array($resume))
+                            {
+                                $data=$row['info_id'];
+                                $queryfour="SELECT * FROM tbl_barber_info where login_id=$barber and info_id=$data";
+                                $resthree=mysqli_query($con,$queryfour);
+                                while($result_no_one=mysqli_fetch_array($resthree)){
+                                    $database_time=$row['booking_time'];
+                                    $hr=mb_substr($database_time,0,2);
+                                    $min=mb_substr($database_time,3,2);
+                                    array_push($taken_hr,$hr);
+                                    array_push($taken_min,$min);
+                                    array_push($taken_avg_time,$result_no_one['avg_time']);
+                                }
+                            }
+
                             $avg_time=$result_barber_info['avg_time'];
+                            $temp_avg_time=$avg_time;
+                            $flag=FALSE;//true means array have the hr already booked !! ;
+                            $mach_hr=0;
+                            $mach_min=0;
+                            $match_avg_time=0;
                             $i=9;$j=0;
+                            // echo count($taken_hr);
                             while($i<20){
-                                if($i / 10 < 1 && $j / 10 < 1 ) $time="0$i:0$j";
-                                elseif($i / 10 < 1 && $j / 10 > 0 ) $time="0$i:$j";
-                                elseif($j / 10 < 1 ) $time="$i:0$j" ;
-                                else $time="$i:$j";
+                                $count=count($taken_hr);
+                                for( $t = 0 ; $t < $count ; $t+=1 ){
+                                    if(!isset($taken_hr[$t])){
+                                        if($taken_hr[$t] == $i) {
+                                            $mach_hr=$taken_hr[$t];$mach_min=$taken_min[$t];$match_avg_time=$taken_avg_time[$t];
+                                            unset($taken_hr[$t]);
+                                            unset($taken_min[$t]);
+                                            unset($taken_avg_time[$t]);
+                                            $flag=TRUE;
+                                            break;
+                                        }
+                                    }
+                                }
 
-                                echo '<button onclick="tim(this.value)" value='.$i.':'.$j.'>'.$time.'</button>';
-                                
-                                if( $j + $avg_time < 60) $j+=$avg_time;
+                                if($flag==TRUE &&  $j+$avg_time > $mach_min ){
+                                    // echo "yes";
+                                    $j=$mach_min;
+                                    $avg_time=$match_avg_time;
+                                    $flag=FALSE;
+                                }else{
+                                    if($i / 10 < 1 && $j / 10 < 1 ) $time="0$i:0$j";
+                                    elseif($i / 10 < 1 && $j / 10 > 0 ) $time="0$i:$j";
+                                    elseif($j / 10 < 1 ) $time="$i:0$j" ;
+                                    else $time="$i:$j";
+
+                                    echo '<button onclick="tim(this.value)" value='.$i.':'.$j.'>'.$time.'</button>';
+                                }
+                                if( $j + $avg_time < 60){ $j+=$avg_time; $avg_time=$temp_avg_time;}
                                 else{
                                     $i+=1;
+                                    $flag=FALSE;
                                     $temp=60-$j; $j=0;
                                     $j+=$avg_time-$temp;
+                                    $avg_time=$temp_avg_time;
                                 }
                             }
                         ?>
-
-
-
+<!-- -------------------------------------------------------------------------------------------------------------------- -->
                         </center>
                     </div>
                 </div>

@@ -6,8 +6,6 @@ $time=$_POST["time"];
 $day=$_POST['day'];
 
 $con=mysqli_connect("localhost","root","","salon")or die("couldn't connect");
-
-
 $query="INSERT INTO tbl_booking (login_id,info_id,booking_day,booking_time) VALUES ($id,$info_id,'$day','$time')";
 
 if(mysqli_query($con,$query)){
