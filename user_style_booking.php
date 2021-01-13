@@ -132,14 +132,18 @@ if(isset($_SESSION["id"])){
                     </div>
                     <div class="bookdays_time" style="display:none">
                         <center>
+
+
                         <?php 
                             $avg_time=$result_barber_info['avg_time'];
                             $i=9;$j=0;
                             while($i<20){
-                                if($i / 10 < 1 && $j / 10 < 1 ) echo '<button onclick="tim(this.value)"  value='.$i.':'.$j.'>0'.$i.':0'.$j.'</button>';
-                                elseif($i / 10 < 1 && $j / 10 > 0 ) echo '<button onclick="tim(this.value)" value='.$i.':'.$j.'>0'.$i.':'.$j.'</button>';
-                                elseif($j / 10 < 1 ) echo '<button onclick="tim(this.value)" value='.$i.':'.$j.'>'.$i.':0'.$j.'</button>';
-                                else echo '<button onclick="tim(this.value)" value='.$i.':'.$j.'>'.$i.':'.$j.'</button>';
+                                if($i / 10 < 1 && $j / 10 < 1 ) $time="0$i:0$j";
+                                elseif($i / 10 < 1 && $j / 10 > 0 ) $time="0$i:$j";
+                                elseif($j / 10 < 1 ) $time="$i:0$j" ;
+                                else $time="$i:$j";
+
+                                echo '<button onclick="tim(this.value)" value='.$i.':'.$j.'>'.$time.'</button>';
                                 
                                 if( $j + $avg_time < 60) $j+=$avg_time;
                                 else{
@@ -149,6 +153,9 @@ if(isset($_SESSION["id"])){
                                 }
                             }
                         ?>
+
+
+
                         </center>
                     </div>
                 </div>
