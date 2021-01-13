@@ -10,13 +10,18 @@ $reptpass=$_POST["rept-password"];
 $mobile=$_POST["mobno"];
 
 // echo $uname,$email,$pass,$reptpass,$mobile
-$query="insert into tbl_login(email,password,status) values('$email','$pass',1)";
+if(isset($_GET['type'])){
+    $query="insert into tbl_login(email,password,type,status) values('$email','$pass','barber',1)";
+}
+else{
+    $query="insert into tbl_login(email,password,status) values('$email','$pass',1)";
+}
 mysqli_query($con,$query);
 $loginid=mysqli_insert_id($con);
 $query="insert into reg (loginid,name,mobile) values($loginid,'$uname','$mobile')";
 if(mysqli_query($con,$query))
 {
-    header("Location:signin.php");
+    header("Location:signin_barber.php");
 }
 else{
     echo "Something went wrong !!";

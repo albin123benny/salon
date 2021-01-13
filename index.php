@@ -1,7 +1,7 @@
 <?php
 session_start();
-
-    ?>
+$con=mysqli_connect("localhost","root","","salon")or die("couldn't connect");
+?>
 
 <html>
 <head>
@@ -23,6 +23,10 @@ href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min
      <div class="banner-text ">
         <h1>Hair Studio</h1>
         <p>Style your hair is style your life </p>
+
+        <!-- <center><button>booking and appointment</button></center> -->
+        
+    </div>
        
 
 </section>
@@ -42,17 +46,14 @@ href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min
                 $result=mysqli_query($con,$query);
                 $reg_table = mysqli_fetch_array($result);
                 $per=$reg_table['name'];
-
                 echo '<li><a href="profile.php"> PROFILE, '.$per.'</a></li>';
+                echo '<li><a href="logout.php"> LOGOUT </a></li>';
             }
             else{
                 echo '<li><a href="signin.php"> SIGN IN & REGISTER </a></li>';
             }
             ?>
-            
-            <li><a href="logout.php"> LOGOUT </a></li>
-
-             </ul>
+            </ul>
     </nav>
 </div> 
 <div id="menuBtn">
@@ -124,47 +125,23 @@ href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min
 <h1> we Provide Better </h1>    
 </div>   
 <div class="service-box">
-    <div class="single-service">
-        <img src="images/pic-1.jpg">
-        <div class="overlay"></div>
-        <div class="service-desc">
-            <h3> Hair Styling </h3>
-            <hr>
-            <p>This is test under description of barber 
-                foundation this is test under description of barber foundation  </p>
-        </div>
-    </div>
-    <div class="single-service">
-        <img src="images/pic-2.jpg">
-        <div class="overlay"></div>
-        <div class="service-desc">
-            <h3> Beard Trim </h3>
-            <hr>
-            <p>This is test under description of barber 
-                foundation this is test under description of barber foundation  </p>
-        </div>
-    </div>
-    <div class="single-service">
-        <img src="images/pic-3.jpg">
-        <div class="overlay"></div>
-        <div class="service-desc">
-            <h3> Hair cut </h3>
-            <hr>
-            <p>This is test under description of barber 
-                foundation this is test under description of barber foundation  </p>
-        </div>
-    </div>
-    <div class="single-service">
-        <img src="images/pic-4.jpg">
-        <div class="overlay"></div>
-        <div class="service-desc">
-            <h3> dry shampoo </h3>
-            <hr>
-            <p>This is test under description of barber 
-                foundation this is test under description of barber foundation  </p>
-        </div>
-    </div>
-
+    <?php
+        $query="SELECT * FROM tbl_service";
+        $result=mysqli_query($con,$query);
+        while($row=mysqli_fetch_array($result))
+        { ?>
+            <div class="single-service">
+            <a href="user_service_style.php?id=<?php echo $row['ser_id']?>" >
+                <img src="images/<?php echo $row['ser_img']?>">
+                <div class="overlay"></div>
+                <div class="service-desc">
+                    <h3><?php echo $row['ser_name']?></h3>
+                    <hr>
+                    <p><?php echo $row['ser_desc']?></p>
+                </div>
+                </a>
+            </div>
+        <?php  } ?>  
 </div> 
 
 </section>
