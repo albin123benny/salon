@@ -132,15 +132,25 @@ if(isset($_SESSION["id"])){
                     </div>
                     <div class="bookdays_time" style="display:none">
                         <center>
-<!-- -------------------------------------------------------------DANGER ZONE ( dont ever  play here unless time schedule broke !! ) ------------------------------------------------------- -->
+<!-----------------------------------------DANGER ZONE ( dont ever fk arround here unless time schedule broke || unless an expert in handling db and time related errors !! ) ------------------------------------------------------- -->
                         <?php
+                            // $GLOBALS $able_hr;
+                            // $GLOBALS $able_min;
 
-                            $taken_hr=array();
+
+                            $taken_hr=array(); // array of all database hr, min, and average time taken for tat particular
                             $taken_min=array();
                             $taken_avg_time=array();
+    
+                            $able_hr=array(); // array of hr, min without checking schedules. to compaire with database time. at last this will get updated accordingly.
+                            $able_min=array();
+                            $able_count=count($able_hr);
 
-                            $querythree="SELECT * FROM tbl_booking";
+                            
+                            $querythree="SELECT * FROM tbl_booking where booking_day='$day'";
                             $resume=mysqli_query($con,$querythree);
+                            
+
                             while($row=mysqli_fetch_array($resume))
                             {
                                 $data=$row['info_id'];
@@ -155,52 +165,142 @@ if(isset($_SESSION["id"])){
                                     array_push($taken_avg_time,$result_no_one['avg_time']);
                                 }
                             }
-
+                            $taken_count=count($taken_hr);
+                            
                             $avg_time=$result_barber_info['avg_time'];
-                            $temp_avg_time=$avg_time;
-                            $flag=FALSE;//true means array have the hr already booked !! ;
-                            $mach_hr=0;
-                            $mach_min=0;
-                            $match_avg_time=0;
                             $i=9;$j=0;
-                            // echo count($taken_hr);
+
                             while($i<20){
-                                $count=count($taken_hr);
-                                for( $t = 0 ; $t < $count ; $t+=1 ){
-                                    if(!isset($taken_hr[$t])){
-                                        if($taken_hr[$t] == $i) {
-                                            $mach_hr=$taken_hr[$t];$mach_min=$taken_min[$t];$match_avg_time=$taken_avg_time[$t];
-                                            unset($taken_hr[$t]);
-                                            unset($taken_min[$t]);
-                                            unset($taken_avg_time[$t]);
-                                            $flag=TRUE;
-                                            break;
-                                        }
-                                    }
-                                }
+                                array_push($able_hr,$i); //pushing able time to able array
+                                array_push($able_min,$j);
 
-                                if($flag==TRUE &&  $j+$avg_time > $mach_min ){
-                                    // echo "yes";
-                                    $j=$mach_min;
-                                    $avg_time=$match_avg_time;
-                                    $flag=FALSE;
-                                }else{
-                                    if($i / 10 < 1 && $j / 10 < 1 ) $time="0$i:0$j";
-                                    elseif($i / 10 < 1 && $j / 10 > 0 ) $time="0$i:$j";
-                                    elseif($j / 10 < 1 ) $time="$i:0$j" ;
-                                    else $time="$i:$j";
+                                // echo '<button onclick="tim(this.value)" value='.$i.':'.$j.'>'.$time.'</button>';
 
-                                    echo '<button onclick="tim(this.value)" value='.$i.':'.$j.'>'.$time.'</button>';
-                                }
-                                if( $j + $avg_time < 60){ $j+=$avg_time; $avg_time=$temp_avg_time;}
+                                if( $j + $avg_time < 60) $j+=$avg_time;
                                 else{
                                     $i+=1;
-                                    $flag=FALSE;
                                     $temp=60-$j; $j=0;
                                     $j+=$avg_time-$temp;
-                                    $avg_time=$temp_avg_time;
                                 }
                             }
+                            $able_count=count($able_hr);
+
+                            function tim($time_hr,$time_min,$addtime)
+                            {
+                                $i=$time_hr;
+                                $j=$time_min;
+                                if($j+$addtime < 60) $j+=$addtime;
+                                else
+                                {
+                                    $i+=1;
+                                    $tempone=60-$j;
+                                    $j=0;
+                                    $j+=$addtime-$tempone;
+                                }
+                                $ret=array($i,$j);
+                                return $ret;
+                            }
+
+
+                            function equal($avg,$j){
+
+                                global $able_hr;
+                                global $able_min;
+                                global $able_count;
+                                global $avg_time;
+
+                                $tup=tim($able_hr[$j],$able_min[$j],$avg);
+                                $able_hr[$j]=$tup[0];
+                                $able_min[$j]=$tup[1];
+                                if($j+1 < $able_count)
+                                {
+                                    for( $h=$j+1; $h < $able_count ; $h++)
+                                    {
+                                        $tupp=tim($able_hr[$h-1],$able_min[$h-1],$avg_time);
+                                        $able_hr[$h]=$tupp[0];
+                                        $able_min[$h]=$tupp[1];
+                                    }
+                                }
+                            }
+                            
+                            // sorting taken time because if not in order the schedule time will vary and be take the last one even if its not the greatest
+                            for( $x=0 ; $x < $taken_count ; $x++)
+                            {
+                                for ( $y=$x ; $y < $taken_count ; $y++){
+                                    if($taken_hr[$x] > $taken_hr[$y])
+                                    {
+                                        $temp_hr=$taken_hr[$x];
+                                        $temp_min=$taken_min[$x];
+                                        $temp_avg=$taken_avg_time[$x];
+
+                                        $taken_hr[$x]=$taken_hr[$y];
+                                        $taken_min[$x]=$taken_min[$y];
+                                        $taken_avg_time[$x]=$taken_avg_time[$y];
+
+                                        $taken_hr[$y]=$temp_hr;
+                                        $taken_min[$y]=$temp_min;
+                                        $taken_avg_time[$y]=$temp_avg;
+                                    }
+                                    elseif($taken_hr[$x]==$taken_hr[$y] && $taken_min[$x] > $taken_min[$y])
+                                    {
+                                        $temp_min=$taken_min[$x];
+                                        $temp_avg=$taken_avg_time[$x];
+                                        $taken_min[$x]=$taken_min[$y];
+                                        $taken_avg_time[$x]=$taken_avg_time[$y];
+                                        $taken_min[$y]=$temp_min;
+                                        $taken_avg_time[$y]=$temp_avg;
+                                    }
+                                }
+                                
+                            }
+
+
+
+                            for( $a=0 ; $a < $taken_count ; $a++ )
+                            {
+                                for( $b=0 ; $b < $able_count ; $b++ )
+                                {
+                                    if ($taken_hr[$a] == $able_hr[$b] && $taken_min[$a] == $able_min[$b]) {
+                                        // echo $taken_hr[$a].":".$taken_min[$a]."<br>";
+                                        equal($taken_avg_time[$a],$b) ;
+                                        
+                                    }
+                                    
+                                    else if($taken_hr[$a] == $able_hr[$b] && $able_min[$b]+$avg_time > $taken_min[$a])
+                                    {
+                                        // echo $taken_hr[$a].":".$taken_min[$a]."<br>";
+                                        equal($avg_time,$b) ;
+
+                                    }
+                                }
+                            }
+
+                            for( $t=0 ; $t < $able_count ; $t++ )
+                            {
+                                $i=$able_hr[$t];
+                                $j=$able_min[$t];
+                                // echo $i.",";
+                                if($i / 10 < 1 && $j / 10 < 1 ) $time="0$i:0$j";
+                                elseif($i / 10 < 1 && $j / 10 > 0 ) $time="0$i:$j";
+                                elseif($j / 10 < 1 ) $time="$i:0$j" ;
+                                else $time="$i:$j";
+                                echo '<button onclick="tim(this.value)" value='.$i.':'.$j.'>'.$time.'</button>';
+
+                            }
+
+                            // var_dump($taken_hr);
+                            // var_dump($taken_min);
+
+                            // array_splice($taken_hr,0,1);
+                            // echo $taken_hr[2];
+                            // var_dump($able_hr);
+                            // echo "<br>";
+                            // var_dump($able_min);
+
+
+
+
+
                         ?>
 <!-- -------------------------------------------------------------------------------------------------------------------- -->
                         </center>
