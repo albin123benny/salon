@@ -1,6 +1,21 @@
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+function aj(value)
+{
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function()
+    {
+        if (this.readyState == 4 && this.status == 200) 
+        {
+        document.getElementById("sel").innerHTML=this.responseText;
+        }
+    };
+    xhttp.open("GET", "selectcar.php?id="+value, true);
+    xhttp.send();
+}
+
 async function anim(value){
     document.getElementById("dayy").value=value;
     document.getElementsByClassName("book_content")[0].style.cssText="width:300px;";
