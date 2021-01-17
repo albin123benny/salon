@@ -1,4 +1,5 @@
 <!-----------------------------------------DANGER ZONE ( dont ever fk arround here unless time schedule broke || unless an expert in handling db and time related errors !! ) ------------------------------------------------------- -->
+<!-- http://localhost/salon/php/scheduling.php?styleid=11&barber=17&ser_id=1&day=Thursday -->
 <?php
 session_start();
 if(isset($_SESSION["id"])){

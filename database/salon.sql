@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 11, 2021 at 06:28 AM
+-- Generation Time: Jan 16, 2021 at 06:42 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -67,7 +67,32 @@ CREATE TABLE `tbl_barber_info` (
 INSERT INTO `tbl_barber_info` (`info_id`, `login_id`, `style_id`, `price`, `avg_time`, `images`, `status`) VALUES
 (4, 17, 11, 50, 25, 'one.png', 1),
 (5, 17, 12, 90, 15, 'one.png', 1),
-(6, 17, 13, 90, 25, 'one.png', 1);
+(6, 17, 13, 90, 20, 'one.png', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_booking`
+--
+
+CREATE TABLE `tbl_booking` (
+  `booking_id` int(11) NOT NULL,
+  `login_id` int(11) NOT NULL,
+  `info_id` int(11) NOT NULL,
+  `booking_day` varchar(15) NOT NULL,
+  `booking_time` time NOT NULL,
+  `status` int(5) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_booking`
+--
+
+INSERT INTO `tbl_booking` (`booking_id`, `login_id`, `info_id`, `booking_day`, `booking_time`, `status`) VALUES
+(18, 13, 4, 'Thursday', '09:00:00', 1),
+(19, 13, 5, 'Thursday', '09:25:00', 1),
+(20, 13, 5, 'Thursday', '10:55:00', 1),
+(21, 13, 4, 'Thursday', '10:30:00', 1);
 
 -- --------------------------------------------------------
 
@@ -89,7 +114,7 @@ CREATE TABLE `tbl_login` (
 
 INSERT INTO `tbl_login` (`loginid`, `email`, `password`, `type`, `status`) VALUES
 (13, 'alansmathew@icloud.com', '$2y$10$RITya/.zmJ6Y8.nFJxPZPeGv9hb09XpK0RMh1V5uGOcjFbt04BI0K', 'customer', 1),
-(14, 'admin@gmail.com', '$2y$10$RITya/.zmJ6Y8.nFJxPZPeGv9hb09XpK0RMh1V5uGOcjFbt04BI0K', 'admin', 0),
+(14, 'admin@gmail.com', '$2y$10$RITya/.zmJ6Y8.nFJxPZPeGv9hb09XpK0RMh1V5uGOcjFbt04BI0K', 'admin', 1),
 (16, 'albin@gmail.com', '$2y$10$RzHkAnLxxI5.bZziy0eXheT4m3JRTKYH1b5XI/j/iym5cE/LSEvO.', 'admin', 1),
 (17, 'barber@gmail.com', '$2y$10$A/Q67GkCR8lnfOwEAaZgPOYwbQdcastRWsKBpuIjsnKwK89ubx7hW', 'barber', 1);
 
@@ -154,6 +179,12 @@ ALTER TABLE `tbl_barber_info`
   ADD PRIMARY KEY (`info_id`);
 
 --
+-- Indexes for table `tbl_booking`
+--
+ALTER TABLE `tbl_booking`
+  ADD PRIMARY KEY (`booking_id`);
+
+--
 -- Indexes for table `tbl_login`
 --
 ALTER TABLE `tbl_login`
@@ -186,6 +217,12 @@ ALTER TABLE `reg`
 --
 ALTER TABLE `tbl_barber_info`
   MODIFY `info_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tbl_booking`
+--
+ALTER TABLE `tbl_booking`
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `tbl_login`

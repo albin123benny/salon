@@ -2,21 +2,23 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function aj(value)
+function aj(value,st)
 {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function()
     {
         if (this.readyState == 4 && this.status == 200) 
         {
-        document.getElementById("sel").innerHTML=this.responseText;
+            document.getElementById("tm").innerHTML=this.responseText;
         }
     };
-    xhttp.open("GET", "selectcar.php?id="+value, true);
+    xhttp.open("GET", "php/scheduling.php"+st+'&day='+value, true);
     xhttp.send();
 }
 
-async function anim(value){
+async function anim(value,strin){
+    aj(value,strin);
+    // alert("yes");
     document.getElementById("dayy").value=value;
     document.getElementsByClassName("book_content")[0].style.cssText="width:300px;";
     await sleep(1000);

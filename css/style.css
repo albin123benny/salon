@@ -901,7 +901,7 @@ del a{
 }
 .weekdays button{
     padding:5px;
-    margin:4px;
+    margin:2px;
 }
 .weekdays button:hover{
     border:1px solid brown;
@@ -929,7 +929,7 @@ del a{
     width:90%;
     height: 70px;
     margin:10px;
-    background: #fff;
+    background: rgb(255, 255, 255);
     box-shadow:
       0 1px 1px rgba(0, 0, 0, 0.096),
       0 12px 0 -5px #eee,
@@ -938,4 +938,27 @@ del a{
       0 24px 1px -9px rgba(0, 0, 0, 0.02);
 }
 
-
+.rightbox_cont img{
+    position: relative;
+    margin:10px 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    float: left;
+}
+.rightbox_cont .nm{
+    position: relative;
+    float: left;
+    margin-top:19px;
+    width:70%;
+    /* background-color: #009688; */
+    text-align: left;
+}
+.rightbox_cont .st{
+    position: relative;
+    float: left;
+    /* background-color: #009688; */
+    font-size: 12px;
+    margin-top: 3px;
+    color:rgba(0, 0, 0, 0.605);
+}

@@ -86,7 +86,11 @@ if(isset($_SESSION["id"])){
     
         <div class="rightbox"><br>
             <center><p>Current Schedules</p>
-            <div class="rightbox_cont" onclick="change()"></div>
+            <div class="rightbox_cont" style="z-index:1" onclick="change()">
+                <img src="images/img-3.jpg" alt="propic"/>
+                <div class="nm">Alan S Mathew</div>
+                <div class="st">Navy &nbsp; 12:20 - 12:40</div>
+            </div>
             <div class="rightbox_cont" onclick="change()"></div>
             <div class="rightbox_cont" onclick="change()"></div>
             <div class="rightbox_cont" onclick="change()"></div>
@@ -120,19 +124,35 @@ if(isset($_SESSION["id"])){
                         <center>
                             <?php
                                 for($i = $key; $i < 7; $i ++ ){
-                                    echo '<button value="'.$weekdays[$dis_day[$i]].'" onclick="anim(this.value)">'.$day_short[$dis_day[$i]].'</button>';
+                                    ?>
+                                    <button 
+                                        value= <?php echo $weekdays[$dis_day[$i]] ?>
+                                        onclick ="anim(this.value,'<?php echo '?styleid='.$style_id.'&barber='.$barber.'&ser_id='.$ser_id ?>')"
+                                        >
+                                        <?php echo $day_short[$dis_day[$i]] ?>
+                                    </button>
+                                <?php
+                                
                                 }
                                 if($key>0){
                                     for($j = 0; $j < $key ; $j ++ ){
-                                        echo '<button value="'.$weekdays[$dis_day[$j]].'" onclick="anim(this.value)">'.$day_short[$dis_day[$j]].'</button>';
+                                    ?>
+                                        <button 
+                                            value= <?php echo $weekdays[$dis_day[$j]] ?>
+                                            onclick ="anim(this.value,'<?php echo '?styleid='.$style_id.'&barber='.$barber.'&ser_id='.$ser_id ?>')"
+                                            >
+                                            <?php echo $day_short[$dis_day[$j]] ?>
+                                        </button>
+                                <?php
+                                        // echo '<button value="'.$weekdays[$dis_day[$j]].'" onclick="anim(this.value)">'.$day_short[$dis_day[$j]].'</button>';
                                     }
                                 }
                             ?>
                         </center>
                     </div>
-                    <div class="bookdays_time" style="display:none">
-                        <center>
-<!-- ----------- here goes ajax -->
+                    <div class="bookdays_time" style="display:none" >
+                        <center id ="tm">
+                            <!-- ----------- here goes ajax -->
                         </center>
                     </div>
                 </div>
