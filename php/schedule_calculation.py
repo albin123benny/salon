@@ -1,6 +1,10 @@
-taken_hr=[9,9,10,10,14]
-taken_min=[0,25,30,55,30]
-taken_avg_time=[25,15,15,25,25]
+# taken_hr=[9,9,10,10,14]
+# taken_min=[0,25,30,55,30]
+# taken_avg_time=[25,15,15,25,25]
+
+taken_hr=[10,9]
+taken_min=[0,30]
+taken_avg_time=[60,15]
 
 # able_hr  =[9,9,9,10,10,11,11,11,12,12]
 # able_min=[0,25,50,15,40,5,30,55,20,45]
@@ -24,10 +28,16 @@ def tim(hr,min,addtime):
         j+=addtime-temp
     return i,j
 
-def equal(avg_time,j):
-    tup=tim(able_hr[j],able_min[j],avg_time)
+def equal(avg_time,j,i):
+    # print(average_time)
+    tup=tim(taken_hr[i],taken_min[i],avg_time)
+    # print(tup)
     able_hr[j]=tup[0]
     able_min[j]=tup[1]
+
+    # for a in range(0,len(able_hr)):
+    #     print(able_hr[a],":",able_min[a])
+
     if j+1 < len(able_hr):
         for h in range (j+1,len(able_hr)):
             tupp=tim(able_hr[h-1],able_min[h-1],average_time)
@@ -62,15 +72,18 @@ for x in range(0,len(taken_hr)):
 
 # print(taken_hr)
 # print(taken_min)
+# print(taken_avg_time)
 
 for i in range(0,len(taken_hr)):
     for j in range(0,len(able_hr)):
         if (taken_hr[i] == able_hr[j] and taken_min[i] == able_min[j]):
-            print(taken_hr[i],":",taken_min[i])
-            equal(taken_avg_time[i],j)
+            # print()
+            # print(taken_hr[i],":",taken_min[i])
+            equal(taken_avg_time[i],j,i)
         elif(taken_hr[i] == able_hr[j] and able_min[j]+average_time > taken_min[i]):
-            print(taken_hr[i],":",taken_min[i])
-            equal(average_time,j)
+            # print(taken_hr[i],":",taken_min[i])
+            # print("condition",i,j)
+            equal(taken_avg_time[i],j,i)
 
 # print(able_hr)
 # print(able_min)

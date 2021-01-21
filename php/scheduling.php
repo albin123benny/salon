@@ -88,14 +88,16 @@ if(isset($_SESSION["id"])){
                             }
 
 
-                            function equal($avg,$j){
+                            function equal($avg,$j,$i){
 
                                 global $able_hr;
                                 global $able_min;
                                 global $able_count;
                                 global $avg_time;
+                                global $taken_hr;
+                                global $taken_min;
 
-                                $tup=tim($able_hr[$j],$able_min[$j],$avg);
+                                $tup=tim($taken_hr[$i],$taken_min[$i],$avg);
                                 $able_hr[$j]=$tup[0];
                                 $able_min[$j]=$tup[1];
                                 if($j+1 < $able_count)
@@ -148,14 +150,14 @@ if(isset($_SESSION["id"])){
                                 {
                                     if ($taken_hr[$a] == $able_hr[$b] && $taken_min[$a] == $able_min[$b]) {
                                         // echo $taken_hr[$a].":".$taken_min[$a]."<br>";
-                                        equal($taken_avg_time[$a],$b) ;
+                                        equal($taken_avg_time[$a],$b,$a) ;
                                         
                                     }
                                     
                                     else if($taken_hr[$a] == $able_hr[$b] && $able_min[$b]+$avg_time > $taken_min[$a])
                                     {
                                         // echo $taken_hr[$a].":".$taken_min[$a]."<br>";
-                                        equal($avg_time,$b) ;
+                                        equal($taken_avg_time[$a],$b,$a) ;
 
                                     }
                                 }
@@ -163,8 +165,8 @@ if(isset($_SESSION["id"])){
 
                             for( $t=0 ; $t < $able_count ; $t++ )
                             {
-                                $i=$able_hr[$t];
-                                $j=$able_min[$t];
+                                $i=(int)$able_hr[$t];
+                                $j=(int)$able_min[$t];
                                 // echo $i.",";
                                 if($i / 10 < 1 && $j / 10 < 1 ) $time="0$i:0$j";
                                 elseif($i / 10 < 1 && $j / 10 > 0 ) $time="0$i:$j";
@@ -174,8 +176,8 @@ if(isset($_SESSION["id"])){
 
                             }
 
-                            // var_dump($taken_hr);
-                            // var_dump($taken_min);
+                            // var_dump($able_hr);
+                            // var_dump($able_min);
 
                             // array_splice($taken_hr,0,1);
                             // echo $taken_hr[2];
